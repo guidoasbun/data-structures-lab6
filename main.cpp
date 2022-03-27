@@ -4,6 +4,7 @@ using namespace std;
 
 void iterSwapStacks (stack<int>& stack1, stack<int>& stack2)
 {
+    size_t stackSize = stack1.size();
 
 }
 
@@ -20,13 +21,7 @@ void stlSwapStacks (stack<int>& stack1, stack<int>& stack2)
 void moveStacks (stack<int>& stack1, stack<int>& stack2)
 {
     stack2 = stack1;
-    size_t stackSize = stack1.size();
-    while (stackSize)
-    {
-        stack1.pop();
-        --stackSize;
-    }
-
+    stack1 = {};
 }
 
 void printStack (stack<int>& stack1)
@@ -62,7 +57,9 @@ int main()
 //    stlSwapStacks(aStack, bStack);
 //    moveStacks(aStack, bStack);
 
+    cout << "Stack1:\n";
     printStack(aStack);
+    cout << "Stack2:\n";
     printStack(bStack);
     return 0;
 }
