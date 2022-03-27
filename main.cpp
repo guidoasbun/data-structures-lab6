@@ -35,8 +35,6 @@ void iterSwapStacks(stack<int> &aStack, stack<int> &bStack)
         bStack.push(aStack.top());
         aStack.pop();
     }
-
-
 }
 
 void recurSwapStacks(stack<int> &aStack, stack<int> &bStack)
