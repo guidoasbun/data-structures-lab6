@@ -20,6 +20,7 @@ void iterSwapStacks(stack<int> &aStack, stack<int> &bStack)
             aStack.pop();
         }
         aStack.push(temp);
+
         while (!bStack.empty())
         {
             aStack.push(bStack.top());
