@@ -1,43 +1,79 @@
 #include <iostream>
 #include <stack>
+
 using namespace std;
 
-void iterSwapStacks (stack<int>& stack1, stack<int>& stack2)
+void iterSwapStacks(stack<int> &aStack, stack<int> &bStack)
 {
-    size_t stackSize = stack1.size();
+    size_t stackSize = aStack.size();
+    int i{0};
+    int temp;
 
-}
-
-void recurSwapStacks (stack<int>& stack1, stack<int>& stack2)
-{
-
-}
-
-void stlSwapStacks (stack<int>& stack1, stack<int>& stack2)
-{
-    stack1.swap(stack2);
-}
-
-void moveStacks (stack<int>& stack1, stack<int>& stack2)
-{
-    stack2 = stack1;
-    stack1 = {};
-}
-
-void printStack (stack<int>& stack1)
-{
-    if (!stack1.empty())
+    while (i < stackSize - 1)
     {
-        size_t stackSize = stack1.size();
+        temp = aStack.top();
+        aStack.pop();
+
+        while (i < aStack.size())
+        {
+            bStack.push(aStack.top());
+            aStack.pop();
+        }
+        aStack.push(temp);
+        while (!bStack.empty())
+        {
+            aStack.push(bStack.top());
+            bStack.pop();
+        }
+
+        ++i;
+    }
+
+    while (!aStack.empty())
+    {
+        bStack.push(aStack.top());
+        aStack.pop();
+    }
+
+
+}
+
+void recurSwapStacks(stack<int> &aStack, stack<int> &bStack)
+{
+    if(!aStack.empty())
+    {
+        int temp = aStack.top();
+        aStack.pop();
+
+        recurSwapStacks(aStack,bStack);
+        bStack.push(temp);
+    }
+}
+
+void stlSwapStacks(stack<int> &aStack, stack<int> &bStack)
+{
+    aStack.swap(bStack);
+}
+
+void moveStacks(stack<int> &aStack, stack<int> &bStack)
+{
+    bStack = aStack;
+    aStack = {};
+}
+
+void printStack(stack<int> &aStack)
+{
+    if (!aStack.empty())
+    {
+        size_t stackSize = aStack.size();
         while (stackSize)
         {
-            cout << stack1.top();
-            stack1.pop();
+            cout << aStack.top();
+            aStack.pop();
             --stackSize;
         }
         cout << endl;
-    }
-    else
+    } else
     {
         cout << "Stack is empty\n" << endl;
     }
@@ -53,7 +89,8 @@ int main()
         aStack.push(i);
     }
 
-
+    iterSwapStacks(aStack, bStack);
+//    recurSwapStacks(aStack, bStack);
 //    stlSwapStacks(aStack, bStack);
 //    moveStacks(aStack, bStack);
 
