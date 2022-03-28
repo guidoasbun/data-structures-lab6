@@ -39,13 +39,12 @@ void iterSwapStacks(stack<int> &aStack, stack<int> &bStack)
 
 void recurSwapStacks(stack<int> &aStack, stack<int> &bStack)
 {
-
-    int temp = aStack.top();
-    aStack.pop();
-
-    if (!aStack.empty())
+    if(!aStack.empty())
     {
-        recurSwapStacks(aStack, bStack);
+        int temp = aStack.top();
+        aStack.pop();
+
+        recurSwapStacks(aStack,bStack);
         bStack.push(temp);
     }
 }
@@ -89,8 +88,8 @@ int main()
         aStack.push(i);
     }
 
-//    iterSwapStacks(aStack, bStack);
-    recurSwapStacks(aStack, bStack);
+    iterSwapStacks(aStack, bStack);
+//    recurSwapStacks(aStack, bStack);
 //    stlSwapStacks(aStack, bStack);
 //    moveStacks(aStack, bStack);
 
